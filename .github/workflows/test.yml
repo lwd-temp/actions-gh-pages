@@ -27,12 +27,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: peaceiris/workflows/setup-node@v0.19.1
+      - uses: peaceiris/workflows/setup-node@v0.20.1
         with:
-          node-version: "18"
-          # node-version-file: ".nvmrc"
+          node-version-file: ".nvmrc"
 
       - name: Dump version
         run: |
@@ -62,12 +61,12 @@ jobs:
       - run: npm test
 
       - name: Upload test coverage as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-${{ matrix.os }}
           path: coverage
 
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v4
 
       - name: Run ncc
         run: npm run build
